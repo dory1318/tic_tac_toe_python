@@ -27,5 +27,13 @@ class TestGame(unittest.TestCase):
         empty = game.field_is_taken(1)
         self.assertEqual (empty, False)
 
+    def test_game_over(self):
+        game = Game(["x", "x", "0", "x", "0", "x", "0", "0", "x"])
+        self.assertEqual (game.game_over(), True)
+
+    def test_game_not_over(self):
+        game = Game([" ", "x", "0", "x", "0", "x", "0", "0", "x"])
+        self.assertEqual (game.game_over(), False)
+
 if __name__ == '__main__':
     unittest.main()

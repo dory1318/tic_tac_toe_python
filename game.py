@@ -16,3 +16,9 @@ class Game():
             return True
         else:
             return False
+
+    def game_over(self):
+        if not " " in self.new_board:
+            return True
+        else:
+            return False
