@@ -1,50 +1,46 @@
-from board import *
+import numpy as np
 
 class Game():
-    def __init__(self, board):
-        self.new_board = board
+    ROWS = 3
+    COLUMNS = 3
+    def __init__(self):
+        self.new_board = np.zeros((self.ROWS, self.COLUMNS), dtype=int)
 
-    def make_move(self, move, shape):
-        if self.field_is_taken(move):
+    def make_move(self, column_coordinate, row_coordinate, player):
+        if self.field_is_taken(column_coordinate, row_coordinate):
             raise Exception("Sorry, that field is already taken, choose another one!")
         else:
-            self.new_board[move] = shape
+            self.new_board[column_coordinate][row_coordinate] = player
             return self.new_board
 
-    def field_is_taken(self, move):
-        if self.new_board[move] != " ":
+    def field_is_taken(self, column_coordinate, row_coordinate):
+        if self.new_board[column_coordinate][row_coordinate] != 0:
             return True
         else:
             return False
 
     def full_board(self):
-        if not " " in self.new_board:
+        if not 0 in (self.new_board[0] and self.new_board[1] and self.new_board[2]):
             return True
         else:
             return False
 
-    def x_won(self):
-        if(
-            (self.new_board[0] == "x" and self.new_board[1] == "x" and self.new_board[2] == "x") or
-            (self.new_board[3] == "x" and self.new_board[4] == "x" and self.new_board[5] == "x") or
-            (self.new_board[6] == "x" and self.new_board[7] == "x" and self.new_board[8] == "x") or
-            (self.new_board[0] == "x" and self.new_board[3] == "x" and self.new_board[6] == "x") or
-            (self.new_board[1] == "x" and self.new_board[4] == "x" and self.new_board[7] == "x") or
-            (self.new_board[2] == "x" and self.new_board[5] == "x" and self.new_board[8] == "x") or
-            (self.new_board[0] == "x" and self.new_board[4] == "x" and self.new_board[8] == "x") or
-            (self.new_board[2] == "x" and self.new_board[4] == "x" and self.new_board[6] == "x")
-            ):
-            return True
-
-    def o_won(self):
-        if(
-            (self.new_board[0] == "o" and self.new_board[1] == "o" and self.new_board[2] == "o") or
-            (self.new_board[3] == "o" and self.new_board[4] == "o" and self.new_board[5] == "o") or
-            (self.new_board[6] == "o" and self.new_board[7] == "o" and self.new_board[8] == "o") or
-            (self.new_board[0] == "o" and self.new_board[3] == "o" and self.new_board[6] == "o") or
-            (self.new_board[1] == "o" and self.new_board[4] == "o" and self.new_board[7] == "o") or
-            (self.new_board[2] == "o" and self.new_board[5] == "o" and self.new_board[8] == "o") or
-            (self.new_board[0] == "o" and self.new_board[4] == "o" and self.new_board[8] == "o") or
-            (self.new_board[2] == "o" and self.new_board[4] == "o" and self.new_board[6] == "o")
-            ):
-            return True
+    def winner(self):
+        if (self.new_board[0][0] == self.new_board[0][1] and self.new_board[0][1] == self.new_board[0][2] and self.new_board[0][1]):
+            return self.new_board[0][1]
+        if (self.new_board[1][0] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[1][2] and self.new_board[1][1]):
+            return self.new_board[1][1]
+        if (self.new_board[2][0] == self.new_board[2][1] and self.new_board[2][1] == self.new_board[2][2] and self.new_board[2][1]):
+            return self.new_board[2][1]
+        if (self.new_board[0][0] == self.new_board[1][0] and self.new_board[1][0] == self.new_board[2][0] and self.new_board[1][0]):
+            return self.new_board[1][0]
+        if (self.new_board[0][1] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[2][1] and self.new_board[1][1]):
+            return self.new_board[1][1]
+        if (self.new_board[0][2] == self.new_board[1][2] and self.new_board[1][2] == self.new_board[2][2] and self.new_board[2][1]):
+            return self.new_board[2][1]
+        if (self.new_board[0][0] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[2][2] and self.new_board[1][1]):
+            return self.new_board[1][1]
+        if (self.new_board[0][2] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[2][0] and self.new_board[1][1]):
+            return self.new_board[1][1]
+        else:
+            return None
