@@ -66,8 +66,8 @@ class TicTac(Game):
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     (mouseX, mouseY) = pygame.mouse.get_pos()
-                    (column, row) = self.mouse_click_on_board(mouseX, mouseY)
-                    print(column, row)
+                    (column, row) = self.mouse_click_on_board(mouseY, mouseX)
+                    self.make_move(column, row)
 
                     pygame.display.update()
 
