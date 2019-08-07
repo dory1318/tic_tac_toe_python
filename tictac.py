@@ -37,14 +37,14 @@ class TicTac(Game):
             column = 0
         elif (self.col_2_row_1.collidepoint(x,y)) or (self.col_2_row_2.collidepoint(x,y)) or (self.col_2_row_3.collidepoint(x,y)):
             column = 1
-        else:
+        elif (self.col_3_row_1.collidepoint(x,y)) or (self.col_3_row_2.collidepoint(x,y)) or (self.col_3_row_3.collidepoint(x,y)):
             column = 2
 
         if (self.col_1_row_1.collidepoint(x,y)) or (self.col_2_row_1.collidepoint(x,y)) or (self.col_3_row_1.collidepoint(x,y)):
             row = 0
         elif (self.col_1_row_2.collidepoint(x,y)) or (self.col_2_row_2.collidepoint(x,y)) or (self.col_3_row_2.collidepoint(x,y)):
             row = 1
-        else:
+        elif (self.col_1_row_3.collidepoint(x,y)) or (self.col_2_row_3.collidepoint(x,y)) or (self.col_3_row_3.collidepoint(x,y)):
             row = 2
 
         return column, row
