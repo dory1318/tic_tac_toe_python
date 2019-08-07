@@ -6,7 +6,11 @@ class Game():
     def __init__(self):
         self.new_board = np.zeros((self.ROWS, self.COLUMNS), dtype=int)
 
-    def make_move(self, column_coordinate, row_coordinate, player):
+    def make_move(self, column_coordinate, row_coordinate, player=1):
+        if np.sum(self.new_board) == 0: # if the sum is 0 it's player1
+            player = 1 # if sum is 1 it's player -1 turn
+        else:
+            player = -1
         if self.field_is_taken(column_coordinate, row_coordinate):
             raise Exception("Sorry, that field is already taken, choose another one!")
         else:
