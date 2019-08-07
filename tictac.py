@@ -1,9 +1,8 @@
-from board import *
 from game import *
 import pygame
 import math
 
-class TicTac():
+class TicTac(Game):
 
     BLACK = (  0,   0,   0)
     LIGHT_ROSE = (255, 179, 230)
@@ -11,35 +10,51 @@ class TicTac():
     LILA = (153, 102, 255)
     size = [510, 450]
     SCREEN = pygame.display.set_mode(size)
-
-    player1 = "x"
-    player2 = "o"
-    current_move = "x"
-
-    NUM_COLS = 3
-    NUM_ROWS = 3
-    SQUARESIZE = 50
-    WIDTH = NUM_COLS * SQUARESIZE
-    HEIGHT = NUM_ROWS * SQUARESIZE
-    SIZE = (WIDTH, HEIGHT)
-    RADIUS = int(SQUARESIZE / 2 - 5)
+    col_1_row_1 = pygame.Rect(100, 100, 100, 100) # [0][0]
+    col_2_row_1 = pygame.Rect(200, 100, 100, 100) # [0][1]
+    col_3_row_1 = pygame.Rect(300, 100, 100, 100) # [0][2]
+    col_1_row_2 = pygame.Rect(100, 200, 100, 100) # [1][0]
+    col_2_row_2 = pygame.Rect(200, 200, 100, 100) # [1][1]
+    col_3_row_2 = pygame.Rect(300, 200, 100, 100) # [1][2]
+    col_1_row_3 = pygame.Rect(100, 300, 100, 100) # [2][0]
+    col_2_row_3 = pygame.Rect(200, 300, 100, 100) # [2][1]
+    col_3_row_3 = pygame.Rect(300, 300, 100, 100) # [2][2]
 
     def draw_board(self, board):
 
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 100, 100), 5)
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 200, 100), 5)
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 300, 100), 5)
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 100, 200), 5)
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 200, 200), 5)
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 300, 200), 5)
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 100, 300), 5)
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 200, 300), 5)
-        pygame.draw.rect(self.SCREEN, self.PINK, (100, 100, 300, 300), 5)
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_1_row_1), 5) # [0][0]
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_2_row_1), 5) # [0][1]
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_3_row_1), 5) # [0][2]
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_1_row_2), 5) # [1][0]
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_2_row_2), 5) # [1][1]
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_3_row_2), 5) # [1][2]
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_1_row_3), 5) # [2][0]
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_2_row_3), 5) # [2][1]
+        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_3_row_3), 5) # [2][2]
+
+    def mouse_click_on_board(self, x, y):
+        if (self.col_1_row_1.collidepoint(x,y)) or (self.col_1_row_2.collidepoint(x,y)) or (self.col_1_row_3.collidepoint(x,y)):
+            column = 0
+        elif (self.col_2_row_1.collidepoint(x,y)) or (self.col_2_row_2.collidepoint(x,y)) or (self.col_2_row_3.collidepoint(x,y)):
+            column = 1
+        else:
+            column = 2
+
+        if (self.col_1_row_1.collidepoint(x,y)) or (self.col_2_row_1.collidepoint(x,y)) or (self.col_3_row_1.collidepoint(x,y)):
+            row = 0
+        elif (self.col_1_row_2.collidepoint(x,y)) or (self.col_2_row_2.collidepoint(x,y)) or (self.col_3_row_2.collidepoint(x,y)):
+            row = 1
+        else:
+            row = 2
+
+        return column, row
+
+
 
     def run_game(self):
         pygame.init()
         self.SCREEN.fill(self.LIGHT_ROSE)
-        self.draw_board(Game(Board().empty_board).new_board)
+        self.draw_board(self.new_board)
         pygame.display.update()
 
         game_over = False
@@ -50,44 +65,12 @@ class TicTac():
                     exit_flag = True
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    # (mouseX, mouseY) = pygame.mouse.get_pos()
-                    # (column, row) = map_mouse_to_board(mouseX, mouseY)
-                    # pygame.draw.circle(self.SCREEN, self.BLACK, (200, 50), 40, 5)
-                    posx = event.pos[0]
-                    posy = event.pos[1]
-                    if self.player1:
-                        pygame.draw.circle(self.SCREEN, self.LILA, (posx, posy), 40, 5)
-                        # pygame.draw.rect(self.SCREEN, self.BLACK, (0,0, self.WIDTH, self.SQUARESIZE))
-                        move = int(math.floor(posx/self.SQUARESIZE))
-                    else:
-                        pygame.draw.circle(self.SCREEN, self.YELLOW, (posx, posy), 40, 5)
+                    (mouseX, mouseY) = pygame.mouse.get_pos()
+                    (column, row) = self.mouse_click_on_board(mouseX, mouseY)
+                    print(column, row)
 
                     pygame.display.update()
 
-                # if event.type == pygame.MOUSEBUTTONDOWN:
-                    # pygame.draw.rect(self.SCREEN, self.BLACK, (0,0, self.WIDTH, self.SQUARESIZE))
-                    # posx = event.pos[0]
-                    # move = int(math.floor(posx/self.SQUARESIZE))
-                         # pygame.draw.circle(screen, BLACK, (200, 50), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (100, 50), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (300, 50), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (200, 150), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (100, 150), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (300, 150), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (200, 250), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (100, 250), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (300, 250), 40, 5)
-
-                         # pygame.draw.circle(screen, BLACK, (100, 50), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (300, 50), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (200, 150), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (100, 150), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (300, 150), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (200, 250), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (100, 250), 40, 5)
-                         # pygame.draw.circle(screen, BLACK, (300, 250), 40, 5)
-                         # pygame.display.update()
-                    # pygame.quit()
 
 def main():
     my_game = TicTac()
