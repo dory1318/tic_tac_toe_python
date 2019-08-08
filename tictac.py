@@ -4,6 +4,10 @@ import math
 
 class TicTac(Game):
 
+    cross = pygame.image.load(r'x-button.png')
+    circle = pygame.image.load(r'hula-hoop-2.png')
+    CROSS = pygame.transform.smoothscale(cross, (60,60))
+    CIRCLE = pygame.transform.smoothscale(circle, (70,70))
     BLACK = (  0,   0,   0)
     LIGHT_ROSE = (255, 179, 230)
     PINK = (255, 26, 179)
@@ -68,6 +72,11 @@ class TicTac(Game):
                     (mouseX, mouseY) = pygame.mouse.get_pos()
                     (column, row) = self.mouse_click_on_board(mouseY, mouseX)
                     self.make_move(column, row)
+                    if self.new_board[column, row] == 1:
+                        self.SCREEN.blit(self.CROSS, (mouseX, mouseY))
+                    else:
+                        self.SCREEN.blit(self.CIRCLE, (mouseX, mouseY))
+
                     print(self.new_board)
                     if self.winner() is not None:
                         if self.winner() == 1:
