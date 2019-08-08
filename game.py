@@ -24,10 +24,12 @@ class Game():
             return False
 
     def full_board(self):
-        if not 0 in (self.new_board[0] and self.new_board[1] and self.new_board[2]):
-            return True
-        else:
-            return False
+        if not 0 in self.new_board[0]:
+            if not 0 in self.new_board[1]:
+                if not 0 in self.new_board[2]:
+                    return True
+                else:
+                    return False
 
     def winner(self):
         if (self.new_board[0][0] == self.new_board[0][1] and self.new_board[0][1] == self.new_board[0][2] and self.new_board[0][1]):

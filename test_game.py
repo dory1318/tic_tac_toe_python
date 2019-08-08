@@ -43,6 +43,41 @@ class TestGame(unittest.TestCase):
         game.new_board = [[1, 1, 1], [0, 0, 1], [0, 1, 0]]
         self.assertEqual (game.winner(), 1)
 
+    def test_winner2(self):
+        game = Game()
+        game.new_board = [[0, 0, 1], [1, 1, 1], [0, 0, 0]]
+        self.assertEqual (game.winner(), 1)
+
+    def test_winner3(self):
+        game = Game()
+        game.new_board = [[0, 0, 0], [0, 0, 1], [1, 1, 1]]
+        self.assertEqual (game.winner(), 1)
+
+    def test_winner4(self):
+        game = Game()
+        game.new_board = [[1, 0, 1], [1, 0, 1], [1, 0, 0]]
+        self.assertEqual (game.winner(), 1)
+
+    def test_winner5(self):
+        game = Game()
+        game.new_board = [[0, 1, 0], [0, 1, 1], [0, 1, 0]]
+        self.assertEqual (game.winner(), 1)
+
+    def test_winner6(self):
+        game = Game()
+        game.new_board = [[1, 0, 1], [0, 0, 1], [0, 1, 1]]
+        self.assertEqual (game.winner(), 1)
+
+    def test_winner7(self):
+        game = Game()
+        game.new_board = [[1, 0, 0], [0, 1, 1], [0, 0, 1]]
+        self.assertEqual (game.winner(), 1)
+
+    def test_winner8(self):
+        game = Game()
+        game.new_board = [[0, 0, 1], [0, 1, 1], [1, 0, 0]]
+        self.assertEqual (game.winner(), 1)
+
     def test_winner_again(self):
         game = Game()
         game.new_board = [[0, -1, 0], [0, -1, 0], [0, -1, 0]]
