@@ -69,16 +69,16 @@ class TicTac(Game):
                     (column, row) = self.mouse_click_on_board(mouseY, mouseX)
                     self.make_move(column, row)
                     print(self.new_board)
-                    # if self.winner() is not None:
-                    #     if self.winner() == 1:
-                    #         print("X has won")
-                    #         game_over = True
-                    #     elif self.winner() == -1:
-                    #         print(self.winner())
-                    #         print("O has won")
-                    #         game_over = True
-                    # else:
-                    if self.full_board() == True:
+                    if self.winner() is not None:
+                        if self.winner() == 1:
+                            print("X has won")
+                            game_over = True
+                        elif self.winner() == -1:
+                            print(self.winner())
+                            print("O has won")
+                            game_over = True
+                    else:
+                        if self.full_board() == True:
                             print("It's a draw")
                             game_over = True
 

@@ -32,21 +32,11 @@ class Game():
                     return False
 
     def winner(self):
-        if (self.new_board[0][0] == self.new_board[0][1] and self.new_board[0][1] == self.new_board[0][2] and self.new_board[0][1]):
-            return self.new_board[0][1]
-        if (self.new_board[1][0] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[1][2] and self.new_board[1][1]):
+        if ((self.new_board[0][0] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[2][2]) or (self.new_board[0][2] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[2][0])) and self.new_board[1][1] is not 0:
             return self.new_board[1][1]
-        if (self.new_board[2][0] == self.new_board[2][1] and self.new_board[2][1] == self.new_board[2][2] and self.new_board[2][1]):
-            return self.new_board[2][1]
-        if (self.new_board[0][0] == self.new_board[1][0] and self.new_board[1][0] == self.new_board[2][0] and self.new_board[1][0]):
-            return self.new_board[1][0]
-        if (self.new_board[0][1] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[2][1] and self.new_board[1][1]):
-            return self.new_board[1][1]
-        if (self.new_board[0][2] == self.new_board[1][2] and self.new_board[1][2] == self.new_board[2][2] and self.new_board[2][1]):
-            return self.new_board[2][1]
-        if (self.new_board[0][0] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[2][2] and self.new_board[1][1]):
-            return self.new_board[1][1]
-        if (self.new_board[0][2] == self.new_board[1][1] and self.new_board[1][1] == self.new_board[2][0] and self.new_board[1][1]):
-            return self.new_board[1][1]
-        else:
-            return None
+        for i in range(3):
+            if self.new_board[i][0] == self.new_board[i][1] and self.new_board[i][1] == self.new_board[i][2] and self.new_board[i][0] is not 0:  # Rows
+                return self.new_board[i][0]
+            if self.new_board[0][i] == self.new_board[1][i] and self.new_board[1][i] == self.new_board[2][i] and self.new_board[0][i] is not 0:  # Columns
+                return self.new_board[0][i]
+    
