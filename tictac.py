@@ -53,6 +53,25 @@ class TicTac(Game):
 
         return column, row
 
+    def draw_on_board(self, shape, x, y):
+        if self.col_1_row_1.collidepoint(x, y):
+            self.SCREEN.blit(shape, (115, 115))
+        elif self.col_1_row_2.collidepoint(x, y):
+            self.SCREEN.blit(shape, (215, 115))
+        elif self.col_1_row_3.collidepoint(x, y):
+            self.SCREEN.blit(shape, (315, 115))
+        elif self.col_2_row_1.collidepoint(x, y):
+            self.SCREEN.blit(shape, (115, 215))
+        elif self.col_2_row_2.collidepoint(x, y):
+            self.SCREEN.blit(shape, (215, 215))
+        elif self.col_2_row_3.collidepoint(x, y):
+            self.SCREEN.blit(shape, (315, 215))
+        elif self.col_3_row_1.collidepoint(x, y):
+            self.SCREEN.blit(shape, (115, 315))
+        elif self.col_3_row_2.collidepoint(x, y):
+            self.SCREEN.blit(shape, (215, 315))
+        elif self.col_3_row_3.collidepoint(x, y):
+            self.SCREEN.blit(shape, (315, 315))
 
 
     def run_game(self):
@@ -73,9 +92,9 @@ class TicTac(Game):
                     (column, row) = self.mouse_click_on_board(mouseY, mouseX)
                     self.make_move(column, row)
                     if self.new_board[column, row] == 1:
-                        self.SCREEN.blit(self.CROSS, (mouseX, mouseY))
+                        self.draw_on_board(self.CROSS, mouseY, mouseX)
                     else:
-                        self.SCREEN.blit(self.CIRCLE, (mouseX, mouseY))
+                        self.draw_on_board(self.CIRCLE, mouseY, mouseX)
 
                     print(self.new_board)
                     if self.winner() is not None:
