@@ -1,7 +1,7 @@
 
 # Noughts & Crosses - Tic Tac Toe
-# :o: :x: :o: 
-# :x: :o: :x: 
+# :o: :x: :o:
+# :x: :o: :x:
 # :o: :x: :o:
 
 ---------
@@ -16,7 +16,7 @@ git clone https://github.com/dory1318/tic_tac_toe_python
 ``pip3 install pygame``
 
 ### to run the test:
-``python3 test_banking.py``
+``python3 test_game.py``
 
 ``pytest``
 
@@ -41,7 +41,7 @@ For our final project at Makers we chose the game Connect4 for our Machine Learn
 - checks for full board (or drawn)
 
 ### Achievement/things I have learned so far/things I am happy about:
-:revolving_hearts: <i> TDD the Game class with 100% coverage </i> 
+:revolving_hearts: <i> TDD the Game class with 100% coverage </i>
 
 :revolving_hearts: <i> successfully used numpy for my board </i>
 
@@ -75,7 +75,7 @@ For our final project at Makers we chose the game Connect4 for our Machine Learn
 
 ### Things that are missing/need to be learned/need to be changed
 :broken_heart: <i> so far, player needs to click on the left-top corner of each rectangle to place the XO-s into the middle of the box. I need to find a way to centralise it wherever player clicks within the boarders of field </i>
-  
+
 :broken_heart: <i> so far, game quits if player attempts to choose a field that is alrady taken. It would be nice if game would let re-try instead </i>
 
 :broken_heart: <i> so far, after winning/drawn, game quits and information is only visible from command line. It would be nice if window would remain open and display such infos </i>
