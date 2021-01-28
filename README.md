@@ -74,10 +74,10 @@ For our final project at Makers we chose the game Connect4 for our Machine Learn
 :revolving_hearts: <i> I have had lots of fun building it, enjoyed writing the game and learned a lot! </i>
 
 ### Things that are missing/need to be learned/need to be changed
-:broken_heart: <i> so far, player needs to click on the left-top corner of each rectangle to place the XO-s into the middle of the box. I need to find a way to centralise it wherever player clicks within the boarders of field </i>
-
 :broken_heart: <i> so far, game quits if player attempts to choose a field that is alrady taken. It would be nice if game would let re-try instead </i>
 
 :broken_heart: <i> so far, after winning/drawn, game quits and information is only visible from command line. It would be nice if window would remain open and display such infos </i>
+
+:broken_heart: <i> refactor messy, repetitive code </i>
 
 :broken_heart: <i> a nicer look altogether </i>
