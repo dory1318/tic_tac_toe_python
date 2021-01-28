@@ -14,63 +14,57 @@ class TicTac(Game):
     LILA = (153, 102, 255)
     size = [510, 450]
     SCREEN = pygame.display.set_mode(size)
-    col_1_row_1 = pygame.Rect(100, 100, 100, 100) # [0][0]
-    col_2_row_1 = pygame.Rect(200, 100, 100, 100) # [0][1]
-    col_3_row_1 = pygame.Rect(300, 100, 100, 100) # [0][2]
-    col_1_row_2 = pygame.Rect(100, 200, 100, 100) # [1][0]
-    col_2_row_2 = pygame.Rect(200, 200, 100, 100) # [1][1]
-    col_3_row_2 = pygame.Rect(300, 200, 100, 100) # [1][2]
-    col_1_row_3 = pygame.Rect(100, 300, 100, 100) # [2][0]
-    col_2_row_3 = pygame.Rect(200, 300, 100, 100) # [2][1]
-    col_3_row_3 = pygame.Rect(300, 300, 100, 100) # [2][2]
+    COLS_AND_ROWS = {
+        "col_1_row_1": pygame.Rect(100, 100, 100, 100), # [0][0]
+        "col_2_row_1": pygame.Rect(200, 100, 100, 100), # [0][1]
+        "col_3_row_1": pygame.Rect(300, 100, 100, 100), # [0][2]
+        "col_1_row_2": pygame.Rect(100, 200, 100, 100), # [1][0]
+        "col_2_row_2": pygame.Rect(200, 200, 100, 100), # [1][1]
+        "col_3_row_2": pygame.Rect(300, 200, 100, 100), # [1][2]
+        "col_1_row_3": pygame.Rect(100, 300, 100, 100), # [2][0]
+        "col_2_row_3": pygame.Rect(200, 300, 100, 100), # [2][1]
+        "col_3_row_3": pygame.Rect(300, 300, 100, 100)  # [2][2]
+    }
 
     def draw_board(self, board):
-
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_1_row_1), 5) # [0][0]
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_2_row_1), 5) # [0][1]
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_3_row_1), 5) # [0][2]
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_1_row_2), 5) # [1][0]
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_2_row_2), 5) # [1][1]
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_3_row_2), 5) # [1][2]
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_1_row_3), 5) # [2][0]
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_2_row_3), 5) # [2][1]
-        pygame.draw.rect(self.SCREEN, self.PINK, (self.col_3_row_3), 5) # [2][2]
+        for i in self.COLS_AND_ROWS:
+            pygame.draw.rect(self.SCREEN, self.PINK, (self.COLS_AND_ROWS[i]), 5)
 
     def mouse_click_on_board(self, x, y):
-        if (self.col_1_row_1.collidepoint(x,y)) or (self.col_1_row_2.collidepoint(x,y)) or (self.col_1_row_3.collidepoint(x,y)):
+        if (self.COLS_AND_ROWS['col_1_row_1'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_1_row_2'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_1_row_3'].collidepoint(x, y)):
             column = 0
-        elif (self.col_2_row_1.collidepoint(x,y)) or (self.col_2_row_2.collidepoint(x,y)) or (self.col_2_row_3.collidepoint(x,y)):
+        elif (self.COLS_AND_ROWS['col_2_row_1'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_2_row_2'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_2_row_3'].collidepoint(x, y)):
             column = 1
-        elif (self.col_3_row_1.collidepoint(x,y)) or (self.col_3_row_2.collidepoint(x,y)) or (self.col_3_row_3.collidepoint(x,y)):
+        elif (self.COLS_AND_ROWS['col_3_row_1'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_3_row_2'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_3_row_3'].collidepoint(x, y)):
             column = 2
 
-        if (self.col_1_row_1.collidepoint(x,y)) or (self.col_2_row_1.collidepoint(x,y)) or (self.col_3_row_1.collidepoint(x,y)):
+        if (self.COLS_AND_ROWS['col_1_row_1'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_2_row_1'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_3_row_1'].collidepoint(x, y)):
             row = 0
-        elif (self.col_1_row_2.collidepoint(x,y)) or (self.col_2_row_2.collidepoint(x,y)) or (self.col_3_row_2.collidepoint(x,y)):
+        elif (self.COLS_AND_ROWS['col_1_row_2'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_2_row_2'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_3_row_2'].collidepoint(x, y)):
             row = 1
-        elif (self.col_1_row_3.collidepoint(x,y)) or (self.col_2_row_3.collidepoint(x,y)) or (self.col_3_row_3.collidepoint(x,y)):
+        elif (self.COLS_AND_ROWS['col_1_row_3'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_2_row_3'].collidepoint(x, y)) or (self.COLS_AND_ROWS['col_3_row_3'].collidepoint(x, y)):
             row = 2
 
         return column, row
 
     def draw_on_board(self, shape, x, y):
-        if self.col_1_row_1.collidepoint(x, y):
+        if self.COLS_AND_ROWS['col_1_row_1'].collidepoint(x, y):
             self.SCREEN.blit(shape, (115, 115))
-        elif self.col_1_row_2.collidepoint(x, y):
+        elif self.COLS_AND_ROWS['col_1_row_2'].collidepoint(x, y):
             self.SCREEN.blit(shape, (215, 115))
-        elif self.col_1_row_3.collidepoint(x, y):
+        elif self.COLS_AND_ROWS['col_1_row_3'].collidepoint(x, y):
             self.SCREEN.blit(shape, (315, 115))
-        elif self.col_2_row_1.collidepoint(x, y):
+        elif self.COLS_AND_ROWS['col_2_row_1'].collidepoint(x, y):
             self.SCREEN.blit(shape, (115, 215))
-        elif self.col_2_row_2.collidepoint(x, y):
+        elif self.COLS_AND_ROWS['col_2_row_2'].collidepoint(x, y):
             self.SCREEN.blit(shape, (215, 215))
-        elif self.col_2_row_3.collidepoint(x, y):
+        elif self.COLS_AND_ROWS['col_2_row_3'].collidepoint(x, y):
             self.SCREEN.blit(shape, (315, 215))
-        elif self.col_3_row_1.collidepoint(x, y):
+        elif self.COLS_AND_ROWS['col_3_row_1'].collidepoint(x, y):
             self.SCREEN.blit(shape, (115, 315))
-        elif self.col_3_row_2.collidepoint(x, y):
+        elif self.COLS_AND_ROWS['col_3_row_2'].collidepoint(x, y):
             self.SCREEN.blit(shape, (215, 315))
-        elif self.col_3_row_3.collidepoint(x, y):
+        elif self.COLS_AND_ROWS['col_3_row_3'].collidepoint(x, y):
             self.SCREEN.blit(shape, (315, 315))
 
 
