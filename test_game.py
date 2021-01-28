@@ -67,7 +67,7 @@ class TestGame(unittest.TestCase):
         game = Game()
         game.new_board = [[1, 0, 1], [0, 0, 1], [0, 1, 1]]
         self.assertEqual (game.winner(), 1)
-    
+
     def test_winner7(self):
         game = Game()
         game.new_board = [[1, 0, 0], [0, 1, 1], [0, 0, 1]]

@@ -39,4 +39,3 @@ class Game():
                 return self.new_board[i][0]
             if self.new_board[0][i] == self.new_board[1][i] and self.new_board[1][i] == self.new_board[2][i] and self.new_board[0][i] is not 0:  # Columns
                 return self.new_board[0][i]
-    
