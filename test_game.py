@@ -12,9 +12,7 @@ class TestGame(unittest.TestCase):
     def test_move_to_occupied_field(self):
         game = Game()
         game.make_move(0, 0)
-        with pytest.raises(Exception) as excinfo:
-            game.make_move(0, 0)
-        assert str(excinfo.value) == "Sorry, that field is already taken, choose another one!"
+        self.assertEqual(game.new_board[0][0], 1)
 
     def test_taken_field(self):
         game = Game()

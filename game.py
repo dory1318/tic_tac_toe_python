@@ -12,10 +12,10 @@ class Game():
         else:
             player = -1
         if self.field_is_taken(column_coordinate, row_coordinate):
-            raise Exception("Sorry, that field is already taken, choose another one!")
+            print("Sorry, that field is already taken, choose another one!")
+            self.new_board[column_coordinate][row_coordinate] = self.new_board[column_coordinate][row_coordinate]
         else:
             self.new_board[column_coordinate][row_coordinate] = player
-            return self.new_board
 
     def field_is_taken(self, column_coordinate, row_coordinate):
         if self.new_board[column_coordinate][row_coordinate] != 0:
