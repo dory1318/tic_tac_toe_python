@@ -48,24 +48,11 @@ class TicTac(Game):
         return column, row
 
     def draw_on_board(self, shape, x, y):
-        if self.COLS_AND_ROWS['col_1_row_1'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (115, 115))
-        elif self.COLS_AND_ROWS['col_1_row_2'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (215, 115))
-        elif self.COLS_AND_ROWS['col_1_row_3'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (315, 115))
-        elif self.COLS_AND_ROWS['col_2_row_1'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (115, 215))
-        elif self.COLS_AND_ROWS['col_2_row_2'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (215, 215))
-        elif self.COLS_AND_ROWS['col_2_row_3'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (315, 215))
-        elif self.COLS_AND_ROWS['col_3_row_1'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (115, 315))
-        elif self.COLS_AND_ROWS['col_3_row_2'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (215, 315))
-        elif self.COLS_AND_ROWS['col_3_row_3'].collidepoint(x, y):
-            self.SCREEN.blit(shape, (315, 315))
+        for i in self.COLS_AND_ROWS:
+            top = self.COLS_AND_ROWS[i].top
+            left = self.COLS_AND_ROWS[i].left
+            if self.COLS_AND_ROWS[i].collidepoint(x, y):
+                self.SCREEN.blit(shape, (top + 15, left + 15))
 
 
     def run_game(self):
