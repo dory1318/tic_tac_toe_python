@@ -62,11 +62,10 @@ class TicTac(Game):
         pygame.display.update()
 
         game_over = False
-        exit_flag = False
-        while game_over == False and exit_flag == False: # looping until the end of the game
+        while not game_over: # looping until the end of the game
             for event in pygame.event.get():
-                if event.type == pygame.QUIT: # so we can quit the game anytime
-                    exit_flag = True
+                if event.type == pygame.QUIT:
+                    game_over = True
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     (mouseX, mouseY) = pygame.mouse.get_pos()
@@ -76,20 +75,17 @@ class TicTac(Game):
                         self.draw_on_board(self.CROSS, mouseY, mouseX)
                     else:
                         self.draw_on_board(self.CIRCLE, mouseY, mouseX)
+                    print(self.new_board) # just to see progress in command line
 
-                    print(self.new_board)
                     if self.winner() is not None:
                         if self.winner() == 1:
                             print("X has won")
-                            game_over = True
                         elif self.winner() == -1:
                             print(self.winner())
                             print("O has won")
-                            game_over = True
                     else:
                         if self.full_board() == True:
                             print("It's a draw")
-                            game_over = True
 
                     pygame.display.update()
 
