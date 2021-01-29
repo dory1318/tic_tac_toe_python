@@ -51,11 +51,13 @@ For our final project at Makers we chose the game Connect4 for our Machine Learn
 
 :revolving_hearts: <i> switches turn between player1 and player -1 </i>
 
-:revolving_hearts: <i> can't choose a field that is already taken (so far it breaks the game, but it would be nice in the future if it let re-try) </i>
+:revolving_hearts: <i> if player attempts to choose a field that is alrady taken, they have to re-try </i>
 
 :revolving_hearts: <i> it can tell who is the winner (if there is any) </i>
 
 :revolving_hearts: <i> it can tell if board is full = drawn </i>
+
+:revolving_hearts: <i> done some nice refactoring </i>
 
 :revolving_hearts: <i> successfully used pygame for the "shiny & pretty" part </i>
 
@@ -74,10 +76,8 @@ For our final project at Makers we chose the game Connect4 for our Machine Learn
 :revolving_hearts: <i> I have had lots of fun building it, enjoyed writing the game and learned a lot! </i>
 
 ### Things that are missing/need to be learned/need to be changed
-:broken_heart: <i> so far, game quits if player attempts to choose a field that is alrady taken. It would be nice if game would let re-try instead </i>
+:broken_heart: <i> so far, after winning/drawn, information is only visible from command line. It would be nice if window would display the info </i>
 
-:broken_heart: <i> so far, after winning/drawn, game quits and information is only visible from command line. It would be nice if window would remain open and display such infos </i>
-
-:broken_heart: <i> refactor messy, repetitive code </i>
+:broken_heart: <i> new issue introduced: need to handle the "game over" scenario </i>
 
 :broken_heart: <i> a nicer look altogether </i>
